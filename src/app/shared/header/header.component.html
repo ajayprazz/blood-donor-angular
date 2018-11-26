@@ -1,0 +1,12 @@
+<nav class="navbar navbar-dark navbar-inverse navbar-fixed-top bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/user/view-user']">
+      {{user.name}}
+    </a>
+    <div class="row">
+      <a class="nav-link" routerLink="/user/edit-user/{{user._id}}">Edit Profile</a>
+      <a class="nav-link" routerLink="/user/search-user">Search Donor</a>
+      <button class="btn btn-info" (click)="logout()">Log Out</button>
+    </div>
+  </div>
+</nav>
