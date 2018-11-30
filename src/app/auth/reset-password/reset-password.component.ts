@@ -12,6 +12,7 @@ export class ResetPasswordComponent implements OnInit {
   public token: string;
   public user;
   public submitting: boolean = false;
+  public barLabel: string = "Password strength:";
 
   constructor(public active: ActivatedRoute,
     public router: Router,

@@ -1,7 +1,7 @@
 <div class="container" *ngIf='!showResult'>
   <form class="form-group width">
     <label for="bloodgroup">Blood Group</label>
-    <select class="form-control" name="bloodgroup">
+    <select class="form-control" name="bloodgroup" [(ngModel)]="user.bloodgroup">
       <option value="">Choose Bloodgroup</option>
       <option value="A+">A+</option>
       <option value="A-">A-</option>
@@ -12,7 +12,46 @@
       <option value="O+">O+</option>
       <option value="O-">O-</option>
     </select>
+
+    <div *ngIf='user.bloodgroup'>
+      <label for="district">District</label>
+      <input class="form-control" type="text" name="district" [(ngModel)]="user.district">
+    </div>
   </form>
   <button class="btn btn-primary" *ngIf="!searching" (click)="search()">Search</button>
   <button class="btn btn-info" *ngIf="searching">Searching</button>
+</div>
+
+<!-- for showing result -->
+<div class="container" *ngIf='showResult'>
+  <div>
+    <div class="float-left">
+      <h2>Search Result</h2>
+    </div>
+    <div class="float-right">
+      <button class="btn btn-primary" (click)='searchAgain()'>Search Again</button>
+    </div>
+  </div>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>S.No.</th>
+          <th scope="col">Name</th>
+          <th scope="col">Blood Group</th>
+          <th scope="col">Address</th>
+          <th scope="col">Phone No.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users;let i=index">
+          <th scope="row">{{i+1}}</th>
+          <td>{{user.name}}</td>
+          <td>{{user.bloodgroup}}</td>
+          <td>{{user.district}}</td>
+          <td>{{user.phoneNo}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

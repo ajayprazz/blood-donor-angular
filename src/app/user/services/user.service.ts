@@ -13,4 +13,8 @@ export class UserService extends BaseService {
   getById(id) {
     return this.http.get(this.url + 'user/' + id, this.headersWithToken());
   }
+
+  search(data) {
+    return this.http.post(this.url + 'user/search', data, this.headersWithToken());
+  }
 }

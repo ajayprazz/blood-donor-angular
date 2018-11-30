@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { MessageService } from '../../shared/services/message.service';
+import { User } from '../../auth/services/auth.service';
 
 @Component({
   selector: 'app-view-user',
@@ -14,6 +15,7 @@ export class ViewUserComponent implements OnInit {
     public messageService: MessageService) {
     const userDetail = JSON.parse(localStorage.getItem('user'));
     this.userId = userDetail._id;
+    this.user = new User({});
   }
 
   ngOnInit() {

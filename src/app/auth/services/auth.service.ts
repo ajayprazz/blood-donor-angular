@@ -4,10 +4,7 @@ export class User {
   public email: string;
   public username: string;
   public password: string;
-  public address: {
-    district: String,
-    area: String
-  };
+  public district: string;
   public bloodgroup: string;
   public phoneNo: number;
   public dateOfBirth;

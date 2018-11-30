@@ -5,11 +5,13 @@ import { SearchUserComponent } from './search-user/search-user.component';
 import { ViewUserComponent } from './view-user/view-user.component';
 import { UserRoutingModule } from './user.routing';
 import { UserService } from './services/user.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    UserRoutingModule
+    UserRoutingModule,
+    FormsModule
   ],
   declarations: [
     EditUserComponent,

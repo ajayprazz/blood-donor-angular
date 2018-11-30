@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User, AuthService } from "./../services/auth.service";
 import { MessageService } from '../../shared/services/message.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,10 @@ import { MessageService } from '../../shared/services/message.service';
 export class RegisterComponent implements OnInit {
   public user;
   public submitting: boolean = false;
-  constructor(public authService: AuthService,
+  public barLabel: string = "Password strength:";
+
+  constructor(public router: Router,
+    public authService: AuthService,
     public messageService: MessageService) {
     this.user = new User({});
   }
@@ -20,10 +24,11 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.submitting = true;
-    this.authService.reset(this.user)
+    this.authService.register(this.user)
       .subscribe(
-        (data: any) => {
-          this.messageService.showSuccess('User registration successfull');
+        (data) => {
+          this.router.navigate(['/auth/login'])
+          this.messageService.showSuccess('User registration successfull, please login to continue');
           this.submitting = false;
         },
         (error) => {

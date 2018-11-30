@@ -26,6 +26,23 @@ export class SearchUserComponent implements OnInit {
 
   search() {
     this.searching = true;
+    this.userService.search(this.user)
+      .subscribe(
+        (data: any) => {
+          this.searching = false;
+          this.showResult = true;
+          this.users = data;
+        },
+        error => {
+          this.searching = false;
+          this.messageService.showError(error);
+        }
+      )
+  }
 
+  searchAgain() {
+    this.showResult = false;
+    this.user = new User({});
+    this.user.bloodgroup = '';
   }
 }

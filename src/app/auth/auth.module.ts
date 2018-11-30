@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { PasswordStrengthBarModule } from "ng2-password-strength-bar";
+
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -15,7 +17,8 @@ import { AuthService } from './services/auth.service';
     CommonModule,
     FormsModule,
     AuthRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    PasswordStrengthBarModule
   ],
   declarations: [
     LoginComponent,
