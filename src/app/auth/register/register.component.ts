@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
     public authService: AuthService,
     public messageService: MessageService) {
     this.user = new User({});
+    this.user.bloodgroup = '';
   }
 
   ngOnInit() {

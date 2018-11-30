@@ -1,3 +1,57 @@
-<p>
-  edit-user works!
-</p>
+<div class="container">
+  <form class="form-group width" #editUserForm="ngForm">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" name="name" [(ngModel)]="user.name" #name="ngModel" placeholder="name" required>
+    <div class="danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+      name is required
+    </div>
+
+    <label for="email">Email</label>
+    <input type="text" class="form-control" name="email" placeholder="Email" [(ngModel)]="user.email" #email="ngModel" required email>
+    <div class="danger" *ngIf="email.invalid && (email.touched || email.dirty)">
+      <div *ngIf="email.errors.required">
+        email is required
+      </div>
+      <div *ngIf="email.errors.email">
+        not a valid email
+      </div>
+    </div>
+
+    <label for="bloodgroup">Blood Group</label>
+    <input type="bloodgroup" class="form-control" name="bloodgroup" [(ngModel)]="user.bloodgroup" #bloodgroup="ngModel" placeholder="bloodgroup" required>
+    <div class="danger" *ngIf="bloodgroup.invalid && (bloodgroup.touched || bloodgroup.dirty)">
+      bloodgroup is required
+    </div>
+
+    <label for="phoneNo">Phone No.</label>
+    <input type="text" class="form-control" name="phoneNo" [(ngModel)]="user.phoneNo" #phoneNo="ngModel" placeholder="phone number" maxlength="10" minlength="10" required>
+    <div class="danger" *ngIf="phoneNo.invalid && (phoneNo.touched || phoneNo.dirty)">
+      phone number is required
+    </div>
+
+    <label for="dateOfBirth">Date of Birth</label>
+    <input type="date" class="form-control" name="dateOfBirth" [(ngModel)]="user.dateOfBirth" #dateOfBirth="ngModel" placeholder="date of birth" required>
+    <div class="danger" *ngIf="dateOfBirth.invalid && (dateOfBirth.touched || dateOfBirth.dirty)">
+      date of birth is required
+    </div>
+
+    <label for="district">District</label>
+    <input type="text" class="form-control" name="district" [(ngModel)]="user.district" #district="ngModel" placeholder="district" required>
+    <div class="danger" *ngIf="district.invalid && (district.touched || district.dirty)">
+      district is required
+    </div>
+
+    <label for="username">Username</label>
+    <input type="text" class="form-control" name="username" [(ngModel)]="user.username" #username="ngModel" placeholder="username" required>
+    <div class="danger" *ngIf="username.invalid && (username.touched || username.dirty)">
+      username is required
+    </div>
+
+    <br>
+    <button type="submit" [disabled]="editUserForm.invalid" *ngIf="!submitting" class="btn btn-primary" (click)="update()" name="submit">Submit</button>
+    <button class="btn btn-info" *ngIf="submitting" name="button">submitting</button>
+  </form>
+  <div>
+    Already registed? Login <a [routerLink]="['/auth/login']">here</a>
+  </div>
+</div>

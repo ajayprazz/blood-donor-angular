@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { MessageService } from '../../shared/services/message.service';
 import { User } from '../../auth/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-user',
@@ -11,7 +12,8 @@ import { User } from '../../auth/services/auth.service';
 export class ViewUserComponent implements OnInit {
   public userId;
   public user;
-  constructor(public userService: UserService,
+  constructor(public router: Router,
+    public userService: UserService,
     public messageService: MessageService) {
     const userDetail = JSON.parse(localStorage.getItem('user'));
     this.userId = userDetail._id;
@@ -28,6 +30,23 @@ export class ViewUserComponent implements OnInit {
           this.messageService.showError(error);
         }
       )
+  }
+
+  remove(id) {
+    let delConfirm = confirm('Are you sure to delete your profile?');
+    if (delConfirm) {
+      this.userService.remove(id)
+        .subscribe(
+          data => {
+            localStorage.clear();
+            this.messageService.showSuccess('User deleted');
+            this.router.navigate(['/auth/login']);
+          },
+          error => {
+            this.messageService.showError(error);
+          }
+        )
+    }
   }
 
 }

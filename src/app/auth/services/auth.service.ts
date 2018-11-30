@@ -1,5 +1,6 @@
 
 export class User {
+  public _id: string | number;
   public name: string;
   public email: string;
   public username: string;

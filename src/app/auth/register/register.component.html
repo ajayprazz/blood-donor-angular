@@ -18,7 +18,17 @@
     </div>
 
     <label for="bloodgroup">Blood Group</label>
-    <input type="bloodgroup" class="form-control" name="bloodgroup" [(ngModel)]="user.bloodgroup" #bloodgroup="ngModel" placeholder="bloodgroup" required>
+    <select class="form-control" name="bloodgroup" #bloodgroup="ngModel" [(ngModel)]="user.bloodgroup" required>
+      <option value="">Choose Bloodgroup</option>
+      <option value="A+">A+</option>
+      <option value="A-">A-</option>
+      <option value="B+">B+</option>
+      <option value="B-">B-</option>
+      <option value="AB+">AB+</option>
+      <option value="AB-">AB-</option>
+      <option value="O+">O+</option>
+      <option value="O-">O-</option>
+    </select>
     <div class="danger" *ngIf="bloodgroup.invalid && (bloodgroup.touched || bloodgroup.dirty)">
       bloodgroup is required
     </div>
