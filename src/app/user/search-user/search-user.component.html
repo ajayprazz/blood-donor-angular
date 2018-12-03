@@ -17,6 +17,11 @@
       <label for="district">District</label>
       <input class="form-control" type="text" name="district" [(ngModel)]="user.district">
     </div>
+
+    <div *ngIf="user.district">
+      <label for="area">Area</label>
+      <input class="form-control" type="text" name="area" [(ngModel)]="user.area">
+    </div>
   </form>
   <button class="btn btn-primary" *ngIf="!searching" (click)="search()">Search</button>
   <button class="btn btn-info" *ngIf="searching">Searching</button>
@@ -40,6 +45,7 @@
           <th scope="col">Name</th>
           <th scope="col">Blood Group</th>
           <th scope="col">Address</th>
+          <th scope="col">Area</th>
           <th scope="col">Phone No.</th>
         </tr>
       </thead>
@@ -49,6 +55,7 @@
           <td>{{user.name}}</td>
           <td>{{user.bloodgroup}}</td>
           <td>{{user.district}}</td>
+          <td>{{user.area}}</td>
           <td>{{user.phoneNo}}</td>
         </tr>
       </tbody>

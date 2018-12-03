@@ -3,6 +3,7 @@ import { UserService } from '../services/user.service';
 import { MessageService } from '../../shared/services/message.service';
 import { User } from '../../auth/services/auth.service';
 import { Router } from '@angular/router';
+import { MapUserService } from '../../shared/services/map-user.service';
 
 @Component({
   selector: 'app-view-user',
@@ -14,7 +15,8 @@ export class ViewUserComponent implements OnInit {
   public user;
   constructor(public router: Router,
     public userService: UserService,
-    public messageService: MessageService) {
+    public messageService: MessageService,
+    public mapUserService: MapUserService) {
     const userDetail = JSON.parse(localStorage.getItem('user'));
     this.userId = userDetail._id;
     this.user = new User({});
@@ -24,7 +26,7 @@ export class ViewUserComponent implements OnInit {
     this.userService.getById(this.userId)
       .subscribe(
         (data: any) => {
-          this.user = data;
+          this.user = this.mapUserService.mapResponse(data);
         },
         error => {
           this.messageService.showError(error);

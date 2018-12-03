@@ -30,7 +30,7 @@
     </div>
 
     <label for="dateOfBirth">Date of Birth</label>
-    <input type="date" class="form-control" name="dateOfBirth" [(ngModel)]="user.dateOfBirth" #dateOfBirth="ngModel" placeholder="date of birth" required>
+    <input type="date" class="form-control" name="dateOfBirth" [(ngModel)]="user.dateOfBirth" #dateOfBirth="ngModel" required>
     <div class="danger" *ngIf="dateOfBirth.invalid && (dateOfBirth.touched || dateOfBirth.dirty)">
       date of birth is required
     </div>
@@ -39,6 +39,12 @@
     <input type="text" class="form-control" name="district" [(ngModel)]="user.district" #district="ngModel" placeholder="district" required>
     <div class="danger" *ngIf="district.invalid && (district.touched || district.dirty)">
       district is required
+    </div>
+
+    <label for="area">Area</label>
+    <input type="text" class="form-control" name="area" [(ngModel)]="user.area" #area="ngModel" placeholder="area">
+    <div class="danger" *ngIf="area.invalid && (area.touched || area.dirty)">
+      area is required
     </div>
 
     <label for="username">Username</label>

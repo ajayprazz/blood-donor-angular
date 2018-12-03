@@ -51,6 +51,12 @@
       district is required
     </div>
 
+    <label for="area">Area</label>
+    <input type="text" class="form-control" name="area" [(ngModel)]="user.area" #area="ngModel" placeholder="area">
+    <div class="danger" *ngIf="area.invalid && (area.touched || area.dirty)">
+      area is required
+    </div>
+
     <label for="username">Username</label>
     <input type="text" class="form-control" name="username" [(ngModel)]="user.username" #username="ngModel" placeholder="username" required>
     <div class="danger" *ngIf="username.invalid && (username.touched || username.dirty)">

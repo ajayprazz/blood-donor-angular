@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { MessageService } from '../../shared/services/message.service';
 import { AuthService, User } from '../../auth/services/auth.service';
+import { MapUserService } from '../../shared/services/map-user.service';
 
 @Component({
   selector: 'app-search-user',
@@ -10,13 +11,15 @@ import { AuthService, User } from '../../auth/services/auth.service';
 })
 export class SearchUserComponent implements OnInit {
   public user;
-  public users;
+  public users: Array<any> = [];
   public showResult: boolean = false;
   public searching: boolean = false;
+  public data;
 
   constructor(public userService: UserService,
     public messageService: MessageService,
-    public authService: AuthService) {
+    public authService: AuthService,
+    public mapUserService: MapUserService) {
     this.user = new User({});
     this.user.bloodgroup = '';
   }
@@ -26,12 +29,15 @@ export class SearchUserComponent implements OnInit {
 
   search() {
     this.searching = true;
+    this.data = this.mapUserService.mapRequest(this.user);
     this.userService.search(this.user)
       .subscribe(
         (data: any) => {
           this.searching = false;
           this.showResult = true;
-          this.users = data;
+          data.forEach((user) => {
+            this.users.push(this.mapUserService.mapResponse(user));
+          });
         },
         error => {
           this.searching = false;
@@ -43,6 +49,7 @@ export class SearchUserComponent implements OnInit {
   searchAgain() {
     this.showResult = false;
     this.user = new User({});
+    this.users = [];
     this.user.bloodgroup = '';
   }
 }

@@ -6,6 +6,7 @@ export class User {
   public username: string;
   public password: string;
   public district: string;
+  public area: string;
   public bloodgroup: string;
   public phoneNo: number;
   public dateOfBirth;
