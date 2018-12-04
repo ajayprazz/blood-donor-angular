@@ -19,9 +19,19 @@ export class MessageService {
   showError(error: any) {
     // debugger
     if (error.error) {
-      this.toastr.error(error.error.message);
+      if (error.error.name == "MongoError") {
+        let errMsg = error.error.errmsg.split(':')[2].split(' ');
+        if (errMsg[1] == 'email_1') {
+          this.toastr.error('provided email is already used');
+        } else {
+          this.toastr.error('provided username is already taken')
+        }
+      } else {
+        this.toastr.error(error.error.message);
+      }
     }
     else if (error.message) {
+      console.log('here2');
       this.toastr.error(error.message);
     }
   }
